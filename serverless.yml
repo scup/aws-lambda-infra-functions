@@ -1,0 +1,11 @@
+service: aws-lambda-infra-functions
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: qa
+functions:
+  execGraphql:
+    handler: lambda.execGraphql
+
+  sqsToGraphql:
+    handler: lambda.sqsToGraphql

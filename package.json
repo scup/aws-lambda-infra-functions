@@ -1,0 +1,67 @@
+{
+  "name": "aws-lambda-infra-functions",
+  "version": "1.0.0",
+  "description": "Set of AWS Lambda functions used to execute common system tasks",
+  "author": "Sprinklr",
+  "license": "ISC",
+  "scripts": {
+    "build": "yarn lint && yarn coverage && serverless package",
+    "debug": "NODE_PATH=./ serverless invoke local",
+    "coverage": "nyc yarn test",
+    "lint": "standard -v \"Domain/**/*.js\" \"Infra/**/*.js\" \"Features/**/*.js\"",
+    "test": "NODE_ENV=test NODE_PATH=./ mocha \"Domain/**/*.test.js\" \"Infra/**/*.test.js\" --colors --require Tests/support.js --reporter spec",
+    "test:watch": "yarn test -- --watch --reporter min"
+  },
+  "nyc": {
+    "statements": 95,
+    "branches": 95,
+    "functions": 95,
+    "lines": 95,
+    "check-coverage": true,
+    "reporter": [
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "exclude": [
+      "node_modules/**/*",
+      "Domain/**/*.test.js",
+      "Infra/**/*.test.js"
+    ]
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "it",
+      "after",
+      "afterEach",
+      "before",
+      "beforeEach"
+    ]
+  },
+  "engines": {
+    "node": "6.10.2",
+    "npm": "3.10.10"
+  },
+  "dependencies": {
+    "aws-sdk": "2.73.0",
+    "axios": "0.15.2",
+    "dotenv": "4.0.0",
+    "joi": "10.6.0",
+    "speck-entity": "0.1.8",
+    "winston": "2.3.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-as-promised": "^7.1.1",
+    "faker": "^4.1.0",
+    "mocha": "^3.5.0",
+    "rosie": "^1.6.0",
+    "nyc": "^11.1.0",
+    "sinon": "^2.4.1",
+    "standard": "^10.0.2",
+    "serverless": "^1.19.0",
+    "watch-cli": "^0.2.2"
+  }
+}

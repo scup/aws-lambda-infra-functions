@@ -1,0 +1,6 @@
+{
+  "name": "SendDataToGraphqlApi",
+  "private": true,
+  "description": "Send data to a GraphQL api",
+  "main": "./SendDataToGraphqlApi.js"
+}

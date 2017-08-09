@@ -1,0 +1,18 @@
+# dependencies
+node_modules
+
+#logs
+npm-debug.log*
+
+#coverage
+.nyc_output
+coverage
+
+#lock
+package-lock.json
+
+# serverless
+.serverless
+
+# dotenv
+.env

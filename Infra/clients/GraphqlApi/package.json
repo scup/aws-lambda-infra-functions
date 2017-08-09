@@ -1,0 +1,6 @@
+{
+  "name": "GraphqlApi",
+  "private": true,
+  "description": "Client to send data to a GraphQL api",
+  "main": "./GraphqlApi.js"
+}

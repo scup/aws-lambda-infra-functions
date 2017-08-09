@@ -1,0 +1,6 @@
+{
+  "name": "ExecuteGraphqlApiCommand",
+  "private": true,
+  "description": "Execute a GraphQL api command",
+  "main": "./ExecuteGraphqlApiCommand.js"
+}

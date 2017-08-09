@@ -1,0 +1,6 @@
+{
+  "name": "SendSqsDataToGraphqlApi",
+  "private": true,
+  "description": "Receive a SQS data and forward it to a GraphQL api",
+  "main": "./SendSqsDataToGraphqlApi.js"
+}
