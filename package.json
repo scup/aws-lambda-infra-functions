@@ -5,7 +5,7 @@
   "author": "Sprinklr",
   "license": "ISC",
   "scripts": {
-    "build": "yarn lint && yarn coverage && serverless package",
+    "build": "serverless package",
     "debug": "NODE_PATH=./ serverless invoke local",
     "coverage": "nyc yarn test",
     "lint": "standard -v \"Domain/**/*.js\" \"Infra/**/*.js\" \"Features/**/*.js\"",
