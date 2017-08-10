@@ -49,6 +49,7 @@
     "axios": "0.15.2",
     "dotenv": "4.0.0",
     "joi": "10.6.0",
+    "serverless": "^1.19.0",
     "speck-entity": "0.1.8",
     "winston": "2.3.1"
   },
@@ -61,7 +62,6 @@
     "nyc": "^11.1.0",
     "sinon": "^2.4.1",
     "standard": "^10.0.2",
-    "serverless": "^1.19.0",
     "watch-cli": "^0.2.2"
   }
 }
