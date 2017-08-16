@@ -1,5 +1,5 @@
 const dependencies = {
-  SqsClient: require('Infra/clients/AWS/SqsClient')
+  SqsClient: require('../../../../Infra/clients/AWS/SqsClient')
 }
 
 const classifyMessages = (groupedMessages, message) => {

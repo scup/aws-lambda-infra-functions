@@ -1,8 +1,8 @@
 const dependencies = {
-  SqsClient: require('Infra/clients/AWS/SqsClient')
+  SqsClient: require('../../../../Infra/clients/AWS/SqsClient')
 }
 
-const SqsMessage = require('Domain/Entities/SqsMessage')
+const SqsMessage = require('../../../Entities/SqsMessage')
 
 const handleResults = content => {
   const contentMessages = content.Messages || []

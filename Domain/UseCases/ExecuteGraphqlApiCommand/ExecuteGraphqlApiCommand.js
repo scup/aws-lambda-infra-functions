@@ -1,6 +1,6 @@
 const dependencies = {
-  GraphqlApi: require('Infra/clients/GraphqlApi'),
-  config: require('Infra/config/lambdas/execGraphql')
+  GraphqlApi: require('../../../Infra/clients/GraphqlApi'),
+  config: require('../../../Infra/config/lambdas/execGraphql')
 }
 
 module.exports = function ExecuteGraphqlApiCommand (injection) {

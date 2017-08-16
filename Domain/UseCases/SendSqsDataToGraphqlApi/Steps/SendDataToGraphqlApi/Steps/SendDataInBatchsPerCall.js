@@ -1,5 +1,5 @@
 const dependencies = {
-  GraphqlApi: require('Infra/clients/GraphqlApi')
+  GraphqlApi: require('../../../../../../Infra/clients/GraphqlApi')
 }
 
 const handleBatchError = (error, messages) => ({

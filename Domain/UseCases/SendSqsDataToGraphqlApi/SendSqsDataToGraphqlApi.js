@@ -2,7 +2,7 @@ const dependencies = {
   ReceiveSqsData: require('./Steps/ReceiveSqsData'),
   SendDataToGraphqlApi: require('./Steps/SendDataToGraphqlApi'),
   MarkSqsDataAsRead: require('./Steps/MarkSqsDataAsRead'),
-  config: require('Infra/config/lambdas/sqsToGraphql')
+  config: require('../../../Infra/config/lambdas/sqsToGraphql')
 }
 
 module.exports = function SendSqsDataToGraphqlApi (injection) {

@@ -1,5 +1,5 @@
 const dependencies = {
-  logger: require('Infra/logger')
+  logger: require('./logger')
 }
 
 module.exports = function createLambdaHandler (useCase, injection) {
