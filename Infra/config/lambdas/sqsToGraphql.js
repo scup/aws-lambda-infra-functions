@@ -1,9 +1,11 @@
+const convertToBoolean = require('../../convertToBoolean')
+
 const localConfig = {
   graphQL: {
     url: process.env.GRAPHQL_API_URL || 'http://somegraphqlapi.com/graphql',
     query: process.env.GRAPHQL_QUERY || 'mutation aMutation($eventData: String!) { someMutation(eventData: $eventData) }',
     variable: process.env.GRAPHQL_QUERY_VARIABLE || 'eventData',
-    acceptBatch: process.env.GRAPHQL_ACCEPT_BATCH || false
+    acceptBatch: convertToBoolean(process.env.GRAPHQL_ACCEPT_BATCH || false)
   },
   sqs: {
     queueUrl: process.env.AWS_SQS_QUEUE_URL || 'some qsq url',
@@ -18,7 +20,7 @@ const remoteConfig = {
     url: process.env.GRAPHQL_API_URL,
     query: process.env.GRAPHQL_QUERY,
     variable: process.env.GRAPHQL_QUERY_VARIABLE,
-    acceptBatch: process.env.GRAPHQL_ACCEPT_BATCH
+    acceptBatch: convertToBoolean(process.env.GRAPHQL_ACCEPT_BATCH)
   },
   sqs: {
     queueUrl: process.env.AWS_SQS_QUEUE_URL,
