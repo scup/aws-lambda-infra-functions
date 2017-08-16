@@ -1,6 +1,6 @@
-const createLambdaHandler = require('Infra/lambdaHandlerBuilder')
-const SendSqsDataToGraphqlApi = require('Domain/UseCases/SendSqsDataToGraphqlApi')
+const createLambdaHandler = require('../createLambdaHandler')
+const SendSqsDataToGraphqlApi = require('../../Domain/UseCases/SendSqsDataToGraphqlApi')
 
-module.exports.handler = createLambdaHandler(
+module.exports = createLambdaHandler(
   (event, context, injection) => SendSqsDataToGraphqlApi(injection)
 )

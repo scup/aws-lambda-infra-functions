@@ -3,7 +3,7 @@ const dependencies = {
 }
 
 module.exports = function createLambdaHandler (useCase, injection) {
-  return (event, context, callback) => {
+  return function (event, context, callback) {
     const { logger } = Object.assign({}, dependencies, injection)
 
     logger.info('Lambda function started...')

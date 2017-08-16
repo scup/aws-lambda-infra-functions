@@ -1,6 +1,6 @@
-const createLambdaHandler = require('../lambdaHandlerBuilder')
+const createLambdaHandler = require('../createLambdaHandler')
 const ExecuteGraphqlApiCommand = require('../../Domain/UseCases/ExecuteGraphqlApiCommand')
 
-module.exports.handler = createLambdaHandler(
+module.exports = createLambdaHandler(
   (event, context, injection) => ExecuteGraphqlApiCommand(injection)
 )
