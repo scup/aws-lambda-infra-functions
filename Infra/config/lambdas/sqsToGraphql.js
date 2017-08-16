@@ -24,7 +24,7 @@ const remoteConfig = {
     queueUrl: process.env.AWS_SQS_QUEUE_URL,
     maxNumberOfMessages: process.env.AWS_SQS_MAX_MESSAGES,
     visibilityTimeout: process.env.AWS_SQS_VISIBILITY_TIMEOUT,
-    region: process.env.AWS_REGION
+    region: process.env.AWS_SQS_REGION
   }
 }
 
