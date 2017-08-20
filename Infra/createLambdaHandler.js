@@ -11,13 +11,11 @@ module.exports = function createLambdaHandler (useCase, injection) {
 
     return useCase(event, context, injection)
       .then(result => {
-        logger.info('Lambda function executed successfully.')
-        logger.info('Result: ', result)
+        logger.info('Lambda function executed successfully.', { result })
         return callback(null, result)
       })
       .catch(error => {
-        logger.error('Lambda function execution failed.')
-        logger.error('Error: ', error)
+        logger.error('Lambda function execution failed.', { error })
         return callback(error)
       })
   }

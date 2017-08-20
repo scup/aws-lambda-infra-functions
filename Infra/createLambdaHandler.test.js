@@ -35,7 +35,7 @@ describe('createLambdaHandler', () => {
       .withExactArgs(event, context, sinon.match.object)
       .resolves(result)
 
-    dependencies.logger.info.exactly(4)
+    dependencies.logger.info.exactly(3)
     dependencies.logger.error.never()
 
     const handler = createLambdaHandler(useCase, dependencies)
@@ -62,8 +62,8 @@ describe('createLambdaHandler', () => {
       .withExactArgs(event, context, sinon.match.object)
       .rejects(error)
 
-    dependencies.logger.info.twice()
-    dependencies.logger.error.twice()
+    dependencies.logger.info.exactly(2)
+    dependencies.logger.error.once()
 
     const handler = createLambdaHandler(useCase, dependencies)
 
