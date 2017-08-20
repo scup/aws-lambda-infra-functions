@@ -49,11 +49,11 @@
     "axios": "0.15.2",
     "dotenv": "4.0.0",
     "joi": "10.6.0",
-    "serverless": "^1.19.0",
     "speck-entity": "0.1.8",
     "winston": "2.3.1"
   },
   "devDependencies": {
+    "serverless": "^1.19.0",
     "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
     "faker": "^4.1.0",
