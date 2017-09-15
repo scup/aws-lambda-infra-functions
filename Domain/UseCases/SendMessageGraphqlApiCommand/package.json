@@ -1,0 +1,6 @@
+{
+  "name": "SendMessageGraphqlApiCommand",
+  "private": true,
+  "description": "Send a message received to GraphQL api command",
+  "main": "./SendMessageGraphqlApiCommand.js"
+}
