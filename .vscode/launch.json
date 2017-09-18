@@ -1,0 +1,49 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Unit Tests",
+        "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+        "args": [
+          "Domain/**/*.test.js",
+          "Infra/**/*.test.js",
+          "--colors",
+          "--require",
+          "Tests/support.js",
+          "--reporter spec"
+        ],
+        "env": {
+          "NODE_ENV": "development",
+          "NODE_PATH": "${workspaceRoot}/"
+        },
+        "internalConsoleOptions": "openOnSessionStart"
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Integration",
+        "program": "${workspaceRoot}/node_modules/cucumber/bin/cucumber.js",
+        "args": [
+          "Features"
+        ],
+        "env": {
+          "NODE_PATH": "${workspaceRoot}/"
+        }
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Program",
+        "program": "${workspaceRoot}/Infra/api/server.js",
+        "args": [
+          "--inspect"
+        ],
+        "env": {
+          "NODE_ENV": "development",
+          "NODE_PATH": "${workspaceRoot}/"
+        }
+      }
+    ]
+  }
