@@ -10,9 +10,6 @@ module.exports = function SendMessageGraphqlApiCommand (event, injection) {
 
   return GraphqlApi.sendData(event.data, config.graphQL, injection)
     .then(res => {
-      return callback(null, {statusCode:200, body: JSON.stringify(res)})
-    })
-    .catch(error => {
-      return callback(error)
+      return {statusCode:200, body: JSON.stringify(res)}
     })
 }
