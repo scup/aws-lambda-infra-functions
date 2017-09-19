@@ -10,7 +10,7 @@ describe('SendMessageGraphqlApiCommand UseCase', () => {
     dependencies = {
       GraphqlApi: {
         sendData: sinon.mock()
-        .resolves(true)
+          .resolves(true)
       },
       config: {
         graphQL: 'some config'
@@ -18,15 +18,15 @@ describe('SendMessageGraphqlApiCommand UseCase', () => {
     }
 
     event = {
-      data: 'some data'
+      body: 'some data'
     }
   })
 
-  it('called the api correctly', () => {
+  it('called the api correctly', async () => {
     dependencies.GraphqlApi.sendData
-      .withExactArgs(event.data, dependencies.config.graphQL, sinon.match.object)
+      .withExactArgs(event.body, dependencies.config.graphQL, sinon.match.object)
 
-      SendMessageGraphqlApiCommand(event, dependencies)
+    SendMessageGraphqlApiCommand(event, dependencies)
 
     dependencies.GraphqlApi.sendData.verify()
   })
