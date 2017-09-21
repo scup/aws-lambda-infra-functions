@@ -10,6 +10,16 @@ module.exports = function SendMessageGraphqlApiCommand (event, injection) {
 
   return GraphqlApi.sendData(event.body, config.graphQL, injection)
     .then(res => {
-      return JSON.stringify({ statusCode: 200, body: res })
+      return JSON.stringify({
+        statusCode: 200,
+        body: res,
+        headers: {
+          headers: {
+            'Access-Control-Allow-Headers': true,
+            'Access-Control-Allow-Methods': true,
+            'Access-Control-Allow-Origin': true
+          }
+        }
+      })
     })
 }
