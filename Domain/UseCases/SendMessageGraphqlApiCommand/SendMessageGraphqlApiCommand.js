@@ -10,6 +10,6 @@ module.exports = function SendMessageGraphqlApiCommand (event, injection) {
 
   return GraphqlApi.sendData(event.body, config.graphQL, injection)
     .then(res => {
-      return JSON.stringify({ statusCode: 200, body: res, isBase64Encoded: true | false })
+      return JSON.stringify({ statusCode: 200, body: res })
     })
 }
