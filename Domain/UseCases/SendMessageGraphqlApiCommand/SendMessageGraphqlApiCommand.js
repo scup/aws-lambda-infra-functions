@@ -12,7 +12,7 @@ module.exports = function SendMessageGraphqlApiCommand (event, injection) {
     .then(res => {
       return {
         'statusCode': 200,
-        'body': JSON.stringify(res),
+        'body': res,
         'headers': {
           'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
           'Access-Control-Allow-Methods': 'POST,OPTIONS',
