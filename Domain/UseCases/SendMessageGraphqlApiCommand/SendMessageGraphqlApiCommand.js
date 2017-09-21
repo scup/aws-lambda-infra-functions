@@ -6,10 +6,10 @@ const dependencies = {
 module.exports = function SendMessageGraphqlApiCommand (event, injection) {
   const { GraphqlApi, config } = Object.assign({}, dependencies, injection)
 
-  if(!event || !event.body) return
+  if (!event || !event.body) return
 
   return GraphqlApi.sendData(event.body, config.graphQL, injection)
     .then(res => {
-      return {statusCode:200, body: JSON.stringify(res)}
+      return JSON.stringify({ statusCode: 200, body: JSON.stringify(res), isBase64Encoded: true | false })
     })
 }
