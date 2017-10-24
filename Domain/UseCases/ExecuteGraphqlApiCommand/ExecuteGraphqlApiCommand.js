@@ -7,5 +7,5 @@ module.exports = function ExecuteGraphqlApiCommand (injection) {
   const { GraphqlApi, config } = Object.assign({}, dependencies, injection)
 
   return GraphqlApi.sendData(null, config.graphQL, injection)
-    .then(response => console.log(response))
+  .then(res => JSON.stringify(res.statusText))
 }
