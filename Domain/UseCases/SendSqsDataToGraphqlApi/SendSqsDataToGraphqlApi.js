@@ -16,6 +16,6 @@ module.exports = function SendSqsDataToGraphqlApi (injection) {
 
       return SendDataToGraphqlApi(data, config, injection)
         .then(_ => MarkSqsDataAsRead(data, config, injection))
-        .then(_ => null)
+        .then(response => console.log(response))
     })
 }
