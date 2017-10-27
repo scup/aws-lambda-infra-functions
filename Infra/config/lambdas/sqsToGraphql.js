@@ -35,7 +35,7 @@ const api = {
   test: localConfig,
   qa: remoteConfig,
   rc: remoteConfig,
-  production: remoteConfig
+  prod: remoteConfig
 }
 
 module.exports = api[require('../environment')]
