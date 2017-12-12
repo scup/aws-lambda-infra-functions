@@ -2,13 +2,7 @@
 
 This project has some common lambdas that can help you to automate some tasks in your system.
 
-Today we have the following lambdas in this project:
-
-- execGraphql: function which executes a common GraphQL call to a GraphQL API
-- sqsToGraphql: function that retrieves some SQS data from a queue and sends its data to a GraphQL API
-- sendMsgGraphql: function that redirects an POST received into an API Gateway endpoint to a GraphQL API
-
-# How To build the lambdas
+# How to build the lambdas
 
 You can build the lambdas ready to upload to AWS using the following command:
 
@@ -16,7 +10,7 @@ You can build the lambdas ready to upload to AWS using the following command:
 yarn build
 ```
 
-The zip file will be created on **.serverless** folder
+The zip file will be created on **packages** folder
 
 # How to test the lambda locally
 
@@ -24,6 +18,46 @@ The zip file will be created on **.serverless** folder
 yarn debug -- --function lambda_name
 ```
 
-# Config Lambda
+## Configuring and using Lambdas
 
-Use serverless.yml to change lambda settings like name, etc.
+To use a lambda published in this library, you need to upload the zip file built by this library, set the a handler point to the specific lambda and set a group of environment variables used in the lambda configuration.
+
+### execGraphQL
+
+**handler**: lambda.execGraphQL
+
+**description**: this function provides way to executes a common GraphQL call to a GraphQL API. One possible way to use this lambda is to execute a GraphQL periodically in a type of batch process.
+
+**environment variables**:
+
+- GRAPHQL_API_URL: the full url to call a GraphQL query/mutation. Example: http://somegraphqlapi.com/graphql
+- GRAPHQL_QUERY: the query to be executed in the GraphQL API. Example: 'mutation { someMutation }'
+
+### sqsToGraphql
+
+**handler**: lambda.sqsToGraphql
+
+**description**: this function retrieves data from a SQS queue and forward it a GraphQL API to further process.
+
+**environment variables**:
+
+- GRAPHQL_API_URL: the full url to call a GraphQL query/mutation. Example: http://somegraphqlapi.com/graphql
+- GRAPHQL_QUERY: the query to be executed in the GraphQL API. Example: 'mutation ($data:String!){ someMutation(data:$data) }'
+- GRAPHQL_VAR: the name of the variable that will receive the SQS data. Example: 'data'
+- GRAPHQL_ACCEPT_BATCH: when its value is 'true' indicate that the function will do only a call to the API with all data extracted from SQS, otherwise the function will call the API multiple times, sending one message per call
+- AWS_SQS_QUEUE_URL: the ARN of the SQS queue
+- AWS_SQS_MAX_MESSAGES: maximum number of messages that will be retrieved from this function. Example: 10
+- AWS_SQS_VISIBILITY_TIMEOUT: indicate the maximum number of seconds that the data will not be visible when retrieved from SQS. Example: 30
+- AWS_SQS_REGION: AWS region where the SQS is located. Example: 'us-east-1'
+
+### sendMsgGraphql
+
+**handler**: lambda.sendMsgGraphql
+
+**description**: function that redirects an POST received into an API Gateway endpoint to a GraphQL API.
+
+**environment variables**:
+
+- GRAPHQL_API_URL: the full url to call a GraphQL query/mutation. Example: http://somegraphqlapi.com/graphql
+- GRAPHQL_QUERY: the query to be executed in the GraphQL API. Example: 'mutation ($data:String!){ someMutation(data:$data) }'
+- GRAPHQL_VAR: the name of the variable that will receive the entire content from the HTTP body. Example: 'data'

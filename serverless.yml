@@ -18,3 +18,5 @@ functions:
     handler: lambda.execGraphql
   sqsToGraphql:
     handler: lambda.sqsToGraphql
+  sendMsgGraphql:
+    handler: lambda.sendMsgGraphql
