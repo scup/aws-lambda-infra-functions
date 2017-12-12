@@ -6,6 +6,7 @@ Today we have the following lambdas in this project:
 
 - execGraphql: function which executes a common GraphQL call to a GraphQL API
 - sqsToGraphql: function that retrieves some SQS data from a queue and sends its data to a GraphQL API
+- sendMsgGraphql: function that redirects an POST received into an API Gateway endpoint to a GraphQL API
 
 # How To build the lambdas
 
