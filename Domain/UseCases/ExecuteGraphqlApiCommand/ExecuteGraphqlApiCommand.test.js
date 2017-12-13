@@ -19,9 +19,9 @@ describe('ExecuteGraphqlApiCommand UseCase', () => {
   it('called the api correctly', () => {
     dependencies.GraphqlApi.sendData
       .withExactArgs(null, dependencies.config.graphQL, sinon.match.object)
+      .resolves()
 
-    ExecuteGraphqlApiCommand(dependencies)
-
-    dependencies.GraphqlApi.sendData.verify()
+    return ExecuteGraphqlApiCommand(dependencies)
+      .then(_ => dependencies.GraphqlApi.sendData.verify())
   })
 })

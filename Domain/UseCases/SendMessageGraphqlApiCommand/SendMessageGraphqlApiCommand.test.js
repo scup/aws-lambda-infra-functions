@@ -22,12 +22,11 @@ describe('SendMessageGraphqlApiCommand UseCase', () => {
     }
   })
 
-  it('called the api correctly', async () => {
+  it('called the api correctly', () => {
     dependencies.GraphqlApi.sendData
       .withExactArgs(event.body, dependencies.config.graphQL, sinon.match.object)
 
-    SendMessageGraphqlApiCommand(event, dependencies)
-
-    dependencies.GraphqlApi.sendData.verify()
+    return SendMessageGraphqlApiCommand(event, dependencies)
+      .then(_ => dependencies.GraphqlApi.sendData.verify())
   })
 })
