@@ -16,8 +16,8 @@ const sendSingleMessage = (message, config, injection) => {
   const { GraphqlApi } = Object.assign({}, dependencies, injection)
 
   return GraphqlApi.sendData(message.content, config.graphQL, injection)
-                .then(_ => message)
-                .catch(error => message.markProcessingError(error))
+    .then(_ => message)
+    .catch(error => message.markProcessingError(error))
 }
 
 module.exports = function SendSingleDataPerCall (messages, config, injection) {
