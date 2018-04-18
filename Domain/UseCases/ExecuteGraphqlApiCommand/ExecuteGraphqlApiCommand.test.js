@@ -2,11 +2,9 @@ const sinon = require('sinon')
 
 const ExecuteGraphqlApiCommand = require('./ExecuteGraphqlApiCommand')
 
-describe('ExecuteGraphqlApiCommand UseCase', () => {
-  let dependencies
-
-  beforeEach(() => {
-    dependencies = {
+describe('ExecuteGraphqlApiCommand UseCase', function () {
+  it('called the api correctly', async function () {
+    const dependencies = {
       GraphqlApi: {
         sendData: sinon.mock()
       },
@@ -14,14 +12,12 @@ describe('ExecuteGraphqlApiCommand UseCase', () => {
         graphQL: 'some config'
       }
     }
-  })
 
-  it('called the api correctly', () => {
     dependencies.GraphqlApi.sendData
       .withExactArgs(null, dependencies.config.graphQL, sinon.match.object)
       .resolves()
 
-    return ExecuteGraphqlApiCommand(dependencies)
-      .then(_ => dependencies.GraphqlApi.sendData.verify())
+    await ExecuteGraphqlApiCommand(dependencies)
+    dependencies.GraphqlApi.sendData.verify()
   })
 })
