@@ -10,7 +10,7 @@
     "coverage": "nyc yarn test",
     "lint": "standard -v \"Domain/**/*.js\" \"Infra/**/*.js\" \"Features/**/*.js\"",
     "test": "NODE_ENV=test NODE_PATH=./ mocha \"Domain/**/*.test.js\" \"Infra/**/*.test.js\" --colors --require Tests/support.js --reporter spec",
-    "test:watch": "yarn test -- --watch --reporter min"
+    "test:watch": "yarn test --watch --reporter min"
   },
   "nyc": {
     "statements": 95,
@@ -41,8 +41,8 @@
     ]
   },
   "engines": {
-    "node": "6.10.2",
-    "npm": "3.10.10"
+    "node": "8.10.0",
+    "npm": "5.6.0"
   },
   "dependencies": {
     "aws-sdk": "2.73.0",
@@ -53,15 +53,15 @@
     "winston": "2.3.1"
   },
   "devDependencies": {
-    "serverless": "^1.19.0",
-    "chai": "^4.1.0",
+    "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "faker": "^4.1.0",
-    "mocha": "^3.5.0",
-    "rosie": "^1.6.0",
-    "nyc": "^11.1.0",
-    "sinon": "^2.4.1",
-    "standard": "^10.0.2",
-    "watch-cli": "^0.2.2"
+    "mocha": "^5.1.1",
+    "nyc": "^11.6.0",
+    "rosie": "^2.0.1",
+    "serverless": "^1.26.1",
+    "sinon": "^4.5.0",
+    "standard": "^11.0.1",
+    "watch-cli": "^0.2.3"
   }
 }
