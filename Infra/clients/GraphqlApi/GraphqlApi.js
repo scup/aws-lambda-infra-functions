@@ -17,7 +17,7 @@ function executeGraphQLPost ({ variableValue, graphQLConfiguration, headers: ext
 
   const postData = { ...getGraphQLVariable(variableKey, variableValue), query }
 
-  return axios.post(url, postData , { headers })
+  return axios.post(url, postData, { headers })
 }
 
 function sendData (eventData, graphQLConfiguration, injection) {

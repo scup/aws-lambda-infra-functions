@@ -11,7 +11,7 @@ describe('GraphqlApiClient', function () {
     Accept: 'application/json'
   }
 
-  beforeEach(function prepareMocks() {
+  beforeEach(function prepareMocks () {
     this.dependencies = {
       axios: { post: sinon.mock('axios::post') }
     }
