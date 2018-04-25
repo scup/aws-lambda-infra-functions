@@ -4,9 +4,9 @@ const dependencies = {
 }
 
 module.exports = async function SendMessageGraphqlApiCommand (event, injection) {
-  const { GraphqlApi, config } = Object.assign({}, dependencies, injection)
-
   if (!event || !event.body) return ({ statusCode: 200, body: 'empty' })
+
+  const { GraphqlApi, config } = Object.assign({}, dependencies, injection)
 
   const response = await GraphqlApi.sendData(event.body, config.graphQL, injection)
 
