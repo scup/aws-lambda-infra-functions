@@ -61,3 +61,16 @@ To use a lambda published in this library, you need to upload the zip file built
 - GRAPHQL_API_URL: the full url to call a GraphQL query/mutation. Example: http://somegraphqlapi.com/graphql
 - GRAPHQL_QUERY: the query to be executed in the GraphQL API. Example: 'mutation ($data:String!){ someMutation(data:$data) }'
 - GRAPHQL_VAR: the name of the variable that will receive the entire content from the HTTP body. Example: 'data'
+
+### kinesisToGraphql
+
+**handler**: lambda.kinesisToGraphql
+
+**description**: function that send Kinesis Stream/Kinesis Analytics by posting them in GraphQL Api.
+
+**environment variables**:
+
+- GRAPHQL_API_URL: the full url to call a GraphQL query/mutation. Example: http://somegraphqlapi.com/graphql
+- GRAPHQL_QUERY: the query to be executed in the GraphQL API. Example: 'mutation ($data:String!){ someMutation(data:$data) }'
+- GRAPHQL_VAR: the name of the variable that will receive the entire content from the HTTP body. Example: 'data'
+- GRAPHQL_HEADERS: (Optional) an cookie formatted string of custom headers to send on request
