@@ -1,32 +1,37 @@
-const sinon = require('sinon')
+describe('SendMessageGraphqlApiCommand UseCase', function () {
+  const { expect } = require('chai')
+  const { mock, match } = require('sinon')
 
-const SendMessageGraphqlApiCommand = require('./SendMessageGraphqlApiCommand')
+  const SendMessageGraphqlApiCommand = require('./SendMessageGraphqlApiCommand')
 
-describe('SendMessageGraphqlApiCommand UseCase', () => {
-  let dependencies
-  let event
-
-  beforeEach(() => {
-    dependencies = {
+  it('calls the api correctly', async function () {
+    const dependencies = {
       GraphqlApi: {
-        sendData: sinon.mock()
-          .resolves(true)
+        sendData: mock('GraphqlApi.sendData').resolves(true)
       },
       config: {
         graphQL: 'some config'
       }
     }
 
-    event = {
+    const event = {
       body: 'some data'
     }
+
+    dependencies.GraphqlApi.sendData
+      .withExactArgs(event.body, dependencies.config.graphQL, match.object)
+
+    await SendMessageGraphqlApiCommand(event, dependencies)
+    dependencies.GraphqlApi.sendData.verify()
   })
 
-  it('called the api correctly', () => {
-    dependencies.GraphqlApi.sendData
-      .withExactArgs(event.body, dependencies.config.graphQL, sinon.match.object)
+  it('returns statusCode 200 and empty body for falsy event', async function () {
+    const result = await SendMessageGraphqlApiCommand(null)
+    expect(result).to.deep.equal({ statusCode: 200, body: 'empty'})
+  })
 
-    return SendMessageGraphqlApiCommand(event, dependencies)
-      .then(_ => dependencies.GraphqlApi.sendData.verify())
+  it('returns statusCode 200 and empty body for event without body', async function () {
+    const result = await SendMessageGraphqlApiCommand({ event: 'without body' })
+    expect(result).to.deep.equal({ statusCode: 200, body: 'empty'})
   })
 })

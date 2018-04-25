@@ -1,33 +1,25 @@
 const sinon = require('sinon')
+const { expect } = require('chai')
 
 const GraphqlApiClient = require('./GraphqlApi')
 
-describe('GraphqlApiClient', () => {
-  describe('#sendData', () => {
-    let inputParameters
-    let expectedHeaders
-    let dependencies
+describe('GraphqlApiClient', function () {
+  const url = 'http://someurl.com/data'
+  const query = 'mutation someNamedMutation($someParameter: String!) { someMutation(someParameter: $someParameter)}'
+  const defaultHeaders = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  }
 
-    beforeEach(() => {
-      const url = 'http://someurl.com/data'
-      const query = 'mutation someNamedMutation($someParameter: String!) { someMutation(someParameter: $someParameter)}'
+  beforeEach(function prepareMocks () {
+    this.dependencies = {
+      axios: { post: sinon.mock('axios::post') }
+    }
+  })
 
-      inputParameters = { url, query }
-
-      expectedHeaders = {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      }
-
-      dependencies = {
-        axios: { post: sinon.mock() }
-      }
-    })
-
-    it('called the api with the some event data', () => {
-      const { url, query } = inputParameters
-
-      const config = { url, query, variable: 'someParameter' }
+  describe('#sendData/#executeGraphQLPost', function () {
+    it('returns api post call sending data to graphQL', function () {
+      const graphQLConfiguration = { url, query, variable: 'someParameter' }
 
       const eventData = 'some data'
 
@@ -38,27 +30,68 @@ describe('GraphqlApiClient', () => {
         }
       }
 
-      dependencies.axios.post
-        .withExactArgs(url, expectedApiData, { headers: expectedHeaders })
+      this.dependencies.axios.post
+        .withExactArgs(url, expectedApiData, { headers: defaultHeaders })
+        .returns('a result')
 
-      GraphqlApiClient.sendData(eventData, config, dependencies)
+      const result = GraphqlApiClient.sendData(eventData, graphQLConfiguration, this.dependencies)
 
-      dependencies.axios.post.verify()
+      expect(result).to.equal('a result')
     })
 
-    it('called the api without event data', () => {
-      const { url, query } = inputParameters
-
-      const config = { url, query }
+    it('returns api post call whitout sending data to GraphQL for falsy variable configuration', function () {
+      const graphQLConfiguration = { url, query, variable: null }
 
       const expectedApiData = { query }
 
-      dependencies.axios.post
-        .withExactArgs(url, expectedApiData, { headers: expectedHeaders })
+      this.dependencies.axios.post
+        .withExactArgs(url, expectedApiData, { headers: defaultHeaders })
+        .returns('a result')
 
-      GraphqlApiClient.sendData(null, config, dependencies)
+      const result = GraphqlApiClient.sendData(null, graphQLConfiguration, this.dependencies)
 
-      dependencies.axios.post.verify()
+      expect(result).to.equal('a result')
+    })
+
+    it('returns api post call whitout sending data to GraphQL for falsy eventData', function () {
+      const graphQLConfiguration = { url, query }
+
+      const expectedApiData = { query }
+
+      this.dependencies.axios.post
+        .withExactArgs(url, expectedApiData, { headers: defaultHeaders })
+        .returns('a result')
+
+      const result = GraphqlApiClient.sendData(null, graphQLConfiguration, this.dependencies)
+
+      expect(result).to.equal('a result')
+    })
+
+    it('returns merge graphQLConfiguration headers into headers mainting defaultHeaders', function () {
+      const graphQLConfiguration = { url, query }
+
+      const expectedApiData = { query }
+
+      this.dependencies.axios.post
+        .withExactArgs(url, expectedApiData, {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Other: 'this header will be send'
+          }
+        })
+        .returns('a result')
+
+      const result = GraphqlApiClient.executeGraphQLPost({
+        graphQLConfiguration,
+        headers: {
+          'Content-Type': 'this value should not be used on call',
+          Accept: 'this value should not be used on call',
+          Other: 'this header will be send'
+        }
+      }, this.dependencies)
+
+      expect(result).to.equal('a result')
     })
   })
 })

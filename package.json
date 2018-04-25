@@ -1,6 +1,6 @@
 {
   "name": "aws-lambda-infra-functions",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Set of AWS Lambda functions used to execute common system tasks",
   "author": "Sprinklr",
   "license": "ISC",
@@ -10,13 +10,13 @@
     "coverage": "nyc yarn test",
     "lint": "standard -v \"Domain/**/*.js\" \"Infra/**/*.js\" \"Features/**/*.js\"",
     "test": "NODE_ENV=test NODE_PATH=./ mocha \"Domain/**/*.test.js\" \"Infra/**/*.test.js\" --colors --require Tests/support.js --reporter spec",
-    "test:watch": "yarn test -- --watch --reporter min"
+    "test:watch": "yarn test --watch --reporter min"
   },
   "nyc": {
-    "statements": 95,
-    "branches": 95,
-    "functions": 95,
-    "lines": 95,
+    "statements": 100,
+    "branches": 100,
+    "functions": 100,
+    "lines": 100,
     "check-coverage": true,
     "reporter": [
       "lcov",
@@ -25,8 +25,7 @@
     ],
     "exclude": [
       "node_modules/**/*",
-      "Domain/**/*.test.js",
-      "Infra/**/*.test.js"
+      "Infra/config/**/*.js"
     ]
   },
   "standard": {
@@ -41,27 +40,28 @@
     ]
   },
   "engines": {
-    "node": "6.10.2",
-    "npm": "3.10.10"
+    "node": "8.10.0",
+    "npm": "5.6.0"
   },
   "dependencies": {
-    "aws-sdk": "2.73.0",
-    "axios": "0.15.2",
-    "dotenv": "4.0.0",
-    "joi": "10.6.0",
-    "speck-entity": "0.1.8",
-    "winston": "2.3.1"
+    "aws-sdk": "^2.228.1",
+    "axios": "^0.18.0",
+    "cookie": "^0.3.1",
+    "dotenv": "^5.0.1",
+    "joi": "^13.2.0",
+    "speck-entity": "^0.2.0",
+    "winston": "2.4.2"
   },
   "devDependencies": {
-    "serverless": "^1.19.0",
-    "chai": "^4.1.0",
+    "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "faker": "^4.1.0",
-    "mocha": "^3.5.0",
-    "rosie": "^1.6.0",
-    "nyc": "^11.1.0",
-    "sinon": "^2.4.1",
-    "standard": "^10.0.2",
-    "watch-cli": "^0.2.2"
+    "mocha": "^5.1.1",
+    "nyc": "11.7.1",
+    "rosie": "^2.0.1",
+    "serverless": "^1.26.1",
+    "sinon": "^4.5.0",
+    "standard": "^11.0.1",
+    "watch-cli": "^0.2.3"
   }
 }
