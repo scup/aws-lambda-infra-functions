@@ -1,0 +1,6 @@
+{
+  "name": "SendRecordsToGraphqlApiCommand",
+  "private": true,
+  "description": "Receive a Kinesis stream/kinesis analytics record",
+  "main": "./SendRecordsToGraphqlApiCommand.js"
+}
