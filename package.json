@@ -45,7 +45,7 @@
     "npm": "5.6.0"
   },
   "dependencies": {
-    "aws-sdk": "^2.224.1",
+    "aws-sdk": "^2.228.1",
     "axios": "^0.18.0",
     "cookie": "^0.3.1",
     "dotenv": "^5.0.1",
