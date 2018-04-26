@@ -14,12 +14,4 @@ const remoteConfig = {
   }
 }
 
-const api = {
-  development: localConfig,
-  test: localConfig,
-  qa: remoteConfig,
-  rc: remoteConfig,
-  prod: remoteConfig
-}
-
-module.exports = api[require('../environment')]
+module.exports = require('../environment').isLocal ? localConfig : remoteConfig

@@ -1,7 +1,7 @@
 const cookie = require('cookie')
+const { isLocal } = require('../environment')
 
 const hardcodeConfiguration = {
-  environments: ['development', 'test'],
   graphQL: {
     url: 'http://localhost:9001/api',
     query: 'mutation { someMutation }',
@@ -19,5 +19,4 @@ const parametrizedConfiguration = {
   headers: cookie.parse(process.env.GRAPHQL_HEADERS || '')
 }
 
-const isLocal = hardcodeConfiguration.environments.includes(require('../environment'))
 module.exports = isLocal ? hardcodeConfiguration : parametrizedConfiguration

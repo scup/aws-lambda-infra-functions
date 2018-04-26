@@ -1,3 +1,5 @@
+const { isLocal } = require('../environment')
+
 const localConfig = {
   graphQL: {
     url: process.env.GRAPHQL_API_URL || 'http://somegraphqlapi.com/graphql',
@@ -12,12 +14,4 @@ const remoteConfig = {
   }
 }
 
-const api = {
-  development: localConfig,
-  test: localConfig,
-  qa: remoteConfig,
-  rc: remoteConfig,
-  prod: remoteConfig
-}
-
-module.exports = api[require('../environment')]
+module.exports = isLocal ? localConfig : remoteConfig

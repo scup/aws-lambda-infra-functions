@@ -1,17 +1,3 @@
-const localConfig = {
-  logLevel: 'info'
+module.exports = {
+  logLevel: process.env.LOG_LEVEL || 'info'
 }
-
-const remoteConfig = {
-  url: process.env.LOG_LEVEL
-}
-
-const api = {
-  development: localConfig,
-  test: localConfig,
-  qa: remoteConfig,
-  rc: remoteConfig,
-  prod: remoteConfig
-}
-
-module.exports = api[require('./environment')]
