@@ -5,8 +5,17 @@ describe('SendRecordsToGraphqlApiCommand', () => {
 
   const SendRecordsToGraphqlApiCommand = require('./SendRecordsToGraphqlApiCommand')
 
+  function createDataBase64 (record) {
+    return {
+      data: Buffer.from(JSON.stringify(record)).toString('base64')
+    }
+  }
+
   it('returns status code of graphQL execution', async function () {
-    const records = ['an array', 'of records']
+    const record1 = { anRecord: 'a value' }
+    const record2 = { otherRecord: 'does not matter' }
+
+    const recordsData = [record1, record2]
     const statusCode = random.number({ max: 599 })
 
     const configuration = {
@@ -19,13 +28,13 @@ describe('SendRecordsToGraphqlApiCommand', () => {
     const dependencies = { configuration, GraphqlApi }
     GraphqlApi.executeGraphQLPost
       .withExactArgs({
-        variableValue: records,
+        variableValue: recordsData,
         graphQLConfiguration: configuration.graphQL,
         headers: configuration.headers
       }, dependencies)
       .resolves({ status: statusCode })
 
-    const result = await SendRecordsToGraphqlApiCommand(records, dependencies)
+    const result = await SendRecordsToGraphqlApiCommand(recordsData.map(createDataBase64), dependencies)
 
     expect(result).to.deep.equal({ statusCode, body: 'ok' })
   })

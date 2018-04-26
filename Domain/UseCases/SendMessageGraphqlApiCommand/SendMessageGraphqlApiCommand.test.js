@@ -27,11 +27,11 @@ describe('SendMessageGraphqlApiCommand UseCase', function () {
 
   it('returns statusCode 200 and empty body for falsy event', async function () {
     const result = await SendMessageGraphqlApiCommand(null)
-    expect(result).to.deep.equal({ statusCode: 200, body: 'empty'})
+    expect(result).to.deep.equal({ statusCode: 200, body: 'empty' })
   })
 
   it('returns statusCode 200 and empty body for event without body', async function () {
     const result = await SendMessageGraphqlApiCommand({ event: 'without body' })
-    expect(result).to.deep.equal({ statusCode: 200, body: 'empty'})
+    expect(result).to.deep.equal({ statusCode: 200, body: 'empty' })
   })
 })
